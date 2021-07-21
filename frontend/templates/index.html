@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Predict Insurance Bill</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
+
+</head>
+
+<body>
+ <div class="login">
+	<h1>Image Classification</h1>
+
+     <div id="Page1">
+        Predict Image class
+        <a href="#" onclick="return show('Page2','Page1');">Show Train Page</a>
+         <form name="inputform" action="{{ url_for('predict')}}" method="POST" enctype="multipart/form-data">
+        <input type="file" name="img_file" />
+        <button type="submit" class="btn btn-primary btn-block btn-large" onclick=validateAndSend() > Predict </button>
+         </form>
+      </div>
+
+
+        <div id="Page2" style="display:none">
+        Train Data
+        <a href="#" onclick="return show('Page1','Page2');">Show Predict Page</a>
+            <form name="dataform" action="{{ url_for('train')}}" method="POST" enctype="multipart/form-data">
+        <input type="file" name="data_file" />
+        <button type="submit" class="btn btn-primary btn-block btn-large" onclick=validateAndSendTrain() > Train </button>
+
+    </form>
+      </div>
+
+     <script>
+         function show(shown, hidden) {
+      document.getElementById(shown).style.display='block';
+      document.getElementById(hidden).style.display='none';
+      return false;
+    }
+        function validateAndSend() {
+            if (inputform.img_file.value == '') {
+                alert('Input at least one field');
+                return false;
+            }
+            else {
+                inputform.submit();
+            }
+        }
+
+        function validateAndSendTrain() {
+            if (dataform.data_file.value == '') {
+                alert('Input at least one field');
+                return false;
+            }
+            else {
+                dataform.submit();
+            }
+        }
+    </script>
+
+ </div>
+ <p> {{prediction1}} </p>  <p> {{prediction2}} </p>  <p> {{prediction3}} </p>
+
+</body>
+</html>
