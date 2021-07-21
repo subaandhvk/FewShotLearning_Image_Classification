@@ -1,8 +1,0 @@
-numpy~=1.19.5
-Pillow~=8.3.1
-Flask~=2.0.1
-Keras~=2.4.3
-tensorflow~=2.5.0
-pandas~=1.0.5
-scikit-learn~=0.23.1
-gunicorn~=20.1.0

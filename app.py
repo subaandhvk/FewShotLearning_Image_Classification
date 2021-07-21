@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 # Import the model
 class_names = ['apple', 'broccoli', 'grape', 'lemon']
-CNN_model = load_model("./CNN-output.h5")
+CNN_model = load_model("CNN-output.h5")
 
 global results
 results = []
