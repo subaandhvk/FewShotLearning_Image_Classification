@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Predict Insurance Bill</title>
+  <title>Predict Fruit class</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -17,9 +17,11 @@
 
      <div id="Page1">
         Predict Image class
-        <a href="#" onclick="return show('Page2','Page1');">Show Train Page</a>
+        <br> <a href="#" onclick="return show('Page2','Page1');" class="anchor_color"> Show Train Page </a> <br>
          <form name="inputform" action="{{ url_for('predict')}}" method="POST" enctype="multipart/form-data">
-        <input type="file" name="img_file" />
+            <br> <input type="file" name="img_file"/><br>
+             <br> <input type="file" name="img_file2" /><br>
+
         <button type="submit" class="btn btn-primary btn-block btn-large" onclick=validateAndSend() > Predict </button>
          </form>
       </div>
@@ -27,7 +29,7 @@
 
         <div id="Page2" style="display:none">
         Train Data
-        <a href="#" onclick="return show('Page1','Page2');">Show Predict Page</a>
+        <br> <a href="#" onclick="return show('Page1','Page2');"> Show Predict Page </a> <br>
             <form name="dataform" action="{{ url_for('train')}}" method="POST" enctype="multipart/form-data">
         <input type="file" name="data_file" />
         <button type="submit" class="btn btn-primary btn-block btn-large" onclick=validateAndSendTrain() > Train </button>
@@ -37,11 +39,11 @@
 
      <script>
          function show(shown, hidden) {
-      document.getElementById(shown).style.display='block';
-      document.getElementById(hidden).style.display='none';
-      return false;
-    }
-        function validateAndSend() {
+             document.getElementById(shown).style.display='block';
+             document.getElementById(hidden).style.display='none';
+             return false;
+         }
+         function validateAndSend() {
             if (inputform.img_file.value == '') {
                 alert('Input at least one field');
                 return false;
@@ -50,7 +52,6 @@
                 inputform.submit();
             }
         }
-
         function validateAndSendTrain() {
             if (dataform.data_file.value == '') {
                 alert('Input at least one field');
