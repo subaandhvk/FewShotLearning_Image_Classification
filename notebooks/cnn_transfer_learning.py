@@ -126,7 +126,7 @@ def predict_cnn_model(data):
 
     class_names = list(train_generator.class_indices)
     num_classes = len(set(class_names))
-
+    class_names = ['apple', 'broccoli', 'grape', 'lemon', 'orange', 'strawberry']
     print(class_names, num_classes)
     data = [data]
     data = np.array(data)

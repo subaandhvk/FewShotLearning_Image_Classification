@@ -6,3 +6,7 @@ tensorflow~=2.5.0
 pandas~=1.0.5
 scikit-learn~=0.23.1
 gunicorn~=20.1.0
+opencv-python~=4.5.3.56
+seaborn~=0.11.1
+matplotlib~=3.4.2
+joblib~=1.0.1

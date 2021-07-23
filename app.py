@@ -6,6 +6,9 @@ from keras.models import load_model
 import zipfile
 import os
 import shutil
+import cv2
+from ai.inference import predict_image_class, create_and_train_model
+from ai.neural_nets import get_existing_siamese_model_triplet_loss
 from notebooks.cnn_transfer_learning import train_model, predict_cnn_model
 
 app = Flask(__name__)
@@ -22,6 +25,13 @@ def index():
 
 def get_result(result):
     results.append(result)
+
+def predict_triplets():
+    siamese_model = get_existing_siamese_model_triplet_loss()
+    print("siamese_model")
+    predictions = predict_image_class(siamese_model)
+    print("predictions", predictions)
+    return predictions
 
 
 @app.route('/predict', methods=['POST'])
@@ -55,14 +65,13 @@ def predict():
 
         res2 = pool.apply_async(predict_triplets, args=(), callback=get_result)
         output.append(res2)
-
-        pass
+        # print(predict_triplets())
 
     pool.close()
     pool.join()
 
     [r.wait() for r in output]
-
+    print('return values', results)
     if len(results) == 2:
         pred1 = results[0]
         pred2 = results[1]
@@ -83,6 +92,7 @@ def train():
             zip_ref.extractall('./datasets/.')
 
         model = train_model()
+        model_triplet_loss = create_and_train_model()
 
     return render_template('train.html', result='Model training successful')
 
